@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login/Registration</title>
+    
+        {%load staticfiles%}
+        <link rel="stylesheet" type="text/css" href="{% static 'travel_app/style.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>Registration/Log in</h2>
+            <div id="add_user" class="container-fluid">
+                <h2>register</h2>
+                <form action="/register" method="post">
+                    {% csrf_token %}
+                    <p>Name: <input type="text" name="name"></p>
+                    <p>Username: <input type="text" name="user_name"></p>
+                    <p>Password: <input type="password" name="password"></p>
+                    <p>Confirm: <input type="password" name="confirm"></p>
+                    <input type="submit" name="submit" value="Register">
+                </form>
+                <h2>Login</h2>
+                <form action="/login" method="post">
+                    {% csrf_token %}
+                    <p>Username: <input type="text" name="user_name"></p>
+                    <p>Password: <input type="password" name="password"></p>
+                    <input type="submit" name="submit" value="Login">
+                </form>
+                {% if messages %}
+                    {% for message in messages %}
+                        <ul>
+                            <li>{{message}}</li>
+                        </ul>
+                    {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+    </body>
+</html>
